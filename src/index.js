@@ -6,33 +6,29 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Users from './components/Users'
-import UserList from './components/UserList'
+//import Users from './components/Users'
 import UsersThunk from './components/UsersThunk'
 import ButtonRedux from './components/ButtonRedux'
-import С from './constants'
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+//import С from './constants'
+import { createStore, applyMiddleware } from 'redux'
 import { getUsers } from './reducers'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
 const initialState = {
-  users: [],
-  loading: false,
-  error: null
+  users: []
 }
 
 const logger = store => next => action => {
-  let result
   console.groupCollapsed("dispatching", action.type)
   console.log('prev state', store.getState())
   console.log('action', action)
-  result = next(action)
+  next(action)
   console.log('next state', store.getState())
   console.groupEnd()
 }
 
-const store = createStore(getUsers, initialState, applyMiddleware(logger,thunk))
+const store = createStore(getUsers, initialState, applyMiddleware(thunk, logger))
 
 // store.dispatch({
 //   type:'GET_USERS',
@@ -71,8 +67,6 @@ export default function App() {
           </ul>
         </nav>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/about">
             <About />

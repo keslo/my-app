@@ -6,7 +6,7 @@ class Button extends Component {
 		this.submit = this.submit.bind(this)
 	}
 	submit(e) {
-		this.props.getUsers(10)
+		this.props.getUsers(50);
 	}
 	render() {
 		return (
