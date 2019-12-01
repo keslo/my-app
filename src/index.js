@@ -7,6 +7,39 @@ import {
   Link
 } from "react-router-dom";
 import Users from './components/Users'
+import UserList from './components/UserList'
+import ButtonRedux from './components/ButtonRedux'
+import С from './constants'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { getUsers } from './reducers'
+import { Provider } from 'react-redux'
+
+const initialState = {
+  users: [],
+  loading: false,
+  error: null
+}
+
+const logger = store => next => action => { let result
+  console.groupCollapsed("dispatching", action.type)
+  console.log('prev state', store.getState())
+  console.log('action', action)
+  result = next(action)
+  console.log('next state', store.getState())
+  console.groupEnd()
+}
+
+const store = createStore(getUsers, initialState, applyMiddleware(logger))
+
+store.dispatch({
+  type:'GET_USERS',
+  count: 10
+})
+store.dispatch({
+  type:'GET_USERS',
+  count: 20
+})
+
 
 export default function App() {
   return (
@@ -34,6 +67,7 @@ export default function App() {
           </Route>
           <Route path="/users">
             <Users />
+            <ButtonRedux />
           </Route>
           <Route path="/">
             <Home />
@@ -56,4 +90,13 @@ function About() {
 //   return <h2>Users</h2>;
 // }
 
-render(<App />, document.getElementById('root'))
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+
+
+
+
