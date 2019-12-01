@@ -20,7 +20,7 @@ class Users extends Component {
 		this.getFakeMembers(this.props.count).then(
 			users => {
 				this.setState({users, loading: false});
-				console.log(users);
+				//console.log(users);
 			},
 			error => {
 				this.setState({error,loading: false})

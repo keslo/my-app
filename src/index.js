@@ -8,11 +8,13 @@ import {
 } from "react-router-dom";
 import Users from './components/Users'
 import UserList from './components/UserList'
+import UsersThunk from './components/UsersThunk'
 import ButtonRedux from './components/ButtonRedux'
 import С from './constants'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { getUsers } from './reducers'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 
 const initialState = {
   users: [],
@@ -20,7 +22,8 @@ const initialState = {
   error: null
 }
 
-const logger = store => next => action => { let result
+const logger = store => next => action => {
+  let result
   console.groupCollapsed("dispatching", action.type)
   console.log('prev state', store.getState())
   console.log('action', action)
@@ -29,17 +32,26 @@ const logger = store => next => action => { let result
   console.groupEnd()
 }
 
-const store = createStore(getUsers, initialState, applyMiddleware(logger))
+const store = createStore(getUsers, initialState, applyMiddleware(logger,thunk))
 
-store.dispatch({
-  type:'GET_USERS',
-  count: 10
-})
-store.dispatch({
-  type:'GET_USERS',
-  count: 20
-})
+// store.dispatch({
+//   type:'GET_USERS',
+//   count: 10
+// })
 
+// const getUserThunk = count => dispatch => {
+//     fetch('https://api.randomuser.me/?nat=US&results=' +count)
+//     .then(res => res.json())
+//     .then(users => dispatch(
+//       { type: "GET_USERS_TWO", users: users.results }
+//     ))
+//   }
+
+//store.dispatch(getUserThunk(5))
+// store.dispatch({
+//   type: "GET_USERS_TWO",
+//   count: 10
+// })
 
 export default function App() {
   return (
@@ -66,8 +78,8 @@ export default function App() {
             <About />
           </Route>
           <Route path="/users">
-            <Users />
             <ButtonRedux />
+            <UsersThunk />
           </Route>
           <Route path="/">
             <Home />

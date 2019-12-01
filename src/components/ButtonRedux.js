@@ -1,14 +1,15 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
 import Button from './Button'
-import { getUsers } from './../reducers'
+//import { getUsers } from './../reducers'
+import { getUserThunk } from './../actions'
 
 export const ButtonRedux = connect (
 	null,
 	dispatch =>
 		({
 			getUsers(count) {
-				dispatch(getUsers({type: 'GET_USERS', count: 30}, {}))
+				dispatch(getUserThunk(5))
 			}
 		})
 )(Button)
