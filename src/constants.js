@@ -1,6 +1,5 @@
 const constants = {
-	GET_USERS : "GET_USERS",
-	GET_USERS_TWO : "GET_USERS_TWO"
+	GET_USERS : "GET_USERS"
 }
 
 export default constants

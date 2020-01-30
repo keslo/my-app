@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Button from './Button'
 import { getUserThunk } from './../actions'
 
-export const ButtonRedux = connect(
+export const ButtonContainer = connect(
 	null,
 	dispatch =>
 		({
@@ -12,4 +12,4 @@ export const ButtonRedux = connect(
 		})
 )(Button)
 
-export default ButtonRedux
+export default ButtonContainer
