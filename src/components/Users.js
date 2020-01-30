@@ -9,8 +9,8 @@ class Users extends Component {
 		return (
 			<ul>
 			{(loading) ? 
-				<span>Loading Users</span> :
-				(users.length) ? users.map((user,i) => <li key={i}>{user.cell}</li>) : <span>0 users loaded</span>
+				<span>Loading Users...</span> :
+			(users.length) ? users.map((user,i) => <li key={i}>{user.name.first} {user.name.last}</li>) : <span>0 users loaded</span>
 			}
 			{(error) ? <p>Error loading</p> : ''}
 			</ul>

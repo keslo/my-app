@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
 import Button from './Button'
-import { getUserThunk } from './../actions'
+import { loadUsers } from './../actions'
 
 export const ButtonContainer = connect(
 	null,
 	dispatch =>
 		({
-			getUsers(count) {
-				dispatch(getUserThunk(count))
+			loadUsers(count) {
+				dispatch(loadUsers(count))
 			}
 		})
 )(Button)

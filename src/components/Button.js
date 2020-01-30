@@ -6,7 +6,7 @@ class Button extends Component {
 	// }
 	render() {
 		return (
-			<button onClick={() => this.props.getUsers(50)}>Push me!</button>
+			<button onClick={() => this.props.loadUsers(10)}>Push me!</button>
 		)
 	}
 }
