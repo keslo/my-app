@@ -2,7 +2,7 @@ import React from "react";
 import { render } from 'react-dom'
 import { BrowserRouter as Router, Switch,Route,Link } from "react-router-dom";
 import thunk from 'redux-thunk'
-import { UsersContainer, ButtonContaier, ButtonContainer } from './components/index'
+import { UsersContainer, ButtonContainer } from './components/index'
 //import С from './constants'
 import { createStore, applyMiddleware } from 'redux'
 import { getUsers } from './reducers'
@@ -20,29 +20,11 @@ const logger = store => next => action => {
 
 const store = createStore(getUsers, initilalStore, applyMiddleware(thunk, logger))
 
-// store.dispatch({
-//   type:'GET_USERS',
-//   count: 10
-// })
-
-// const getUserThunk = count => dispatch => {
-//     fetch('https://api.randomuser.me/?nat=US&results=' +count)
-//     .then(res => res.json())
-//     .then(users => dispatch(
-//       { type: "GET_USERS_TWO", users: users.results }
-//     ))
-//   }
-
-//store.dispatch(getUserThunk(5))
-// store.dispatch({
-//   type: "GET_USERS_TWO",
-//   count: 10
-// })
-
 export default function App() {
   return (
     <Router>
       <div>
+        
         <nav>
           <ul>
             <li>
@@ -62,6 +44,7 @@ export default function App() {
             <About />
           </Route>
           <Route path="/users">
+            <h2>Users</h2>
             <ButtonContainer />
             <UsersContainer />
           </Route>
@@ -80,10 +63,6 @@ function Home() {
 
 function About() {
   return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
 
 render(

@@ -1,16 +1,12 @@
 import React, { Component } from "react"
 
 class Button extends Component {
-	constructor(props) {
-		super(props)
-		this.submit = this.submit.bind(this)
-	}
-	submit(e) {
-		this.props.getUsers(50);
-	}
+	// constructor(props) {
+	// 	super(props)
+	// }
 	render() {
 		return (
-			<button onClick={this.submit}>Push me!</button>
+			<button onClick={() => this.props.getUsers(50)}>Push me!</button>
 		)
 	}
 }

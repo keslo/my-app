@@ -1,4 +1,4 @@
-import C from '/constants'
+import C from './constants'
 
 export const getUserThunk = count => dispatch => {
     fetch('https://api.randomuser.me/?nat=US&results=' +count)
