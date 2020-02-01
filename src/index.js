@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 import { render } from 'react-dom'
-import { BrowserRouter as Router, Switch,Route,Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch,Route,Link } from 'react-router-dom'
 import thunk from 'redux-thunk'
-import { UsersContainer, ButtonContainer } from './components/index'
+import { Home, About, UsersContainer, ButtonContainer } from './components/index'
 import { createStore, applyMiddleware } from 'redux'
 import { getUsers } from './reducers'
 import { Provider } from 'react-redux'
@@ -47,14 +47,6 @@ export default function App() {
       </div>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
 }
 
 render(
