@@ -1,7 +1,9 @@
+import C from '../constants'
+
 const beforeGetUsers = store => next => action => {
     if (typeof action === 'function') {
       store.dispatch({
-          type: 'GET_USERS',
+          type: C.GET_USERS,
           users: [],
           loading: true
       })
