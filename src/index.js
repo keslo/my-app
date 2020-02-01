@@ -7,26 +7,8 @@ import { createStore, applyMiddleware } from 'redux'
 import { getUsers } from './reducers'
 import { Provider } from 'react-redux'
 import initilalStore from './store/index'
-
-const logger = store => next => action => {
-  console.groupCollapsed("dispatching", action.type)
-  console.log('prev state', store.getState())
-  console.log('action', action)
-  next(action)
-  console.log('next state', store.getState())
-  console.groupEnd()
-}
-
-const beforeGetUsers = store => next => action => {
-  if (typeof action === 'function') {
-    store.dispatch({
-        type: 'GET_USERS',
-        users: [],
-        loading: true
-    })
-  }
-  next(action);
-}
+import logger from './middlewares/logger'
+import beforeGetUsers from './middlewares/beforeGetUsers'
 
 const store = createStore(getUsers, initilalStore, applyMiddleware(beforeGetUsers, thunk, logger))
 
