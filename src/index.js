@@ -17,7 +17,18 @@ const logger = store => next => action => {
   console.groupEnd()
 }
 
-const store = createStore(getUsers, initilalStore, applyMiddleware(thunk, logger))
+const beforeGetUsers = store => next => action => {
+  if (typeof action === 'function') {
+    store.dispatch({
+        type: 'GET_USERS',
+        users: [],
+        loading: true
+    })
+  }
+  next(action);
+}
+
+const store = createStore(getUsers, initilalStore, applyMiddleware(beforeGetUsers, thunk, logger))
 
 export default function App() {
   return (
