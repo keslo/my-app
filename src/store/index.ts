@@ -4,11 +4,10 @@ type InitialStoreType = {
     error: null | string
 }
 
-
 const initialStore: InitialStoreType = {
     users: [],
     loading: false,
     error: null
 }
 
-export default initialStore
+export default  initialStore

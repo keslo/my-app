@@ -1,10 +1,11 @@
 import React, { Component } from "react"
 
-class Button extends Component {
-	// constructor(props) {
-	// 	super(props)
-	// }
-	render() {
+type IProps = {
+	loadUsers: (count: number) => void
+}
+
+class Button extends Component<IProps> {
+	public render() {
 		return (
 			<button onClick={() => this.props.loadUsers(10)}>Push me!</button>
 		)
