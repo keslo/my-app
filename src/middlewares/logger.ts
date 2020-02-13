@@ -1,4 +1,6 @@
-const logger = store => next => action => {
+import { Middleware, MiddlewareAPI, Dispatch, Action } from "redux"
+
+const logger: Middleware = store => next => action => {
     console.groupCollapsed("dispatching", action.type)
     console.log('prev state', store.getState())
     console.log('action', action)
